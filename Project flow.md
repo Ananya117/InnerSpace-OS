@@ -189,4 +189,38 @@
   * Runtime restarts needed after `datasets` library install
   * Folder structure must be preserved inside the zip
   * Still confused by entries with sarcasm or mixed emotions
+    
+---
+
+### **8. Lightweight DistilBERT (Colab Version for Deployment)**
+
+**→ Clean Binary Model for Streamlit Use**
+
+* **What Was Done:**
+
+  * Final cleaned binary mood classifier using `DistilBertForSequenceClassification`
+  * Installed and fixed correct `transformers==4.40.1` to avoid compatibility errors
+  * Processed CSV file (`clean_text`, `mood_label`) and mapped emotions to binary
+  * Tokenized with `DistilBertTokenizerFast`, trained using Hugging Face `Trainer`
+  * Metrics: accuracy, precision, recall, f1-score calculated
+  * Exported the trained model and tokenizer to ZIP (`binary_mood_model.zip`) for reuse
+
+* **Dataset Used:**
+
+  * `emotions_preprocessed_final.csv`
+  * Columns: `"clean_text"` and `"mood_label"` mapped to binary label (Good vs Not-Good)
+  * Slightly imbalanced but not manually adjusted yet
+
+* **Accuracy:**
+
+  * \~76.3%
+    (`f1: 0.771`, `precision: 0.747`, `recall: 0.797`)
+
+* **Problem Faced:**
+
+  * Hugging Face version mismatch caused `Trainer` to break initially
+  * Installing `transformers` led to repeated runtime restarts
+  * Tokenization/label split errors due to session reset and missing variables
+  * Accuracy lower than expected (compared to GoEmotions fine-tune), but model still usable
+  * **Final model saved + zipped successfully for Streamlit deployment**
 
