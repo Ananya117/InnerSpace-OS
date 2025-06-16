@@ -223,4 +223,51 @@
   * Tokenization/label split errors due to session reset and missing variables
   * Accuracy lower than expected (compared to GoEmotions fine-tune), but model still usable
   * **Final model saved + zipped successfully for Streamlit deployment**
+ 
+---
+
+### **9. Local Streamlit Deployment + Modular Journal Integration**
+
+**→ Local Innerspace OS Build Begins**
+
+**What Was Done:**
+
+* Moved the exported `binary_model` folder (from the Colab-trained ZIP) into a local `model/` directory.
+* Created a lightweight **`mood_detector/mood.py`** to handle inference using `DistilBertTokenizerFast` and `DistilBertForSequenceClassification`.
+* Built an initial **Streamlit UI (`app.py`)** to load the model and test predictions.
+* Created modular directory structure:
+
+  * `journal/journal.py` for a mood-aware journaling interface
+  * `mood_detector/mood.py` for prediction logic
+  * `model/binary_model/` containing tokenizer & model files
+* Integrated everything in a central **Streamlit app** with routing to the `journal_panel()` interface.
+* Verified local run using:
+
+  ```
+  streamlit run app.py
+  ```
+* Saved all data entries into a CSV (`journal_entries.csv`) with timestamps and predicted moods.
+
+**Folder Structure:**
+
+```
+Innerspace/
+├── app.py
+├── model/
+│   └── binary_model/
+├── mood_detector/
+│   └── mood.py
+├── journal/
+│   └── journal.py
+```
+
+**Problem Faced:**
+
+* `set_page_config()` placement caused `StreamlitSetPageConfigMustBeFirstCommandError`—resolved by ensuring it's the first call.
+* Relative import issues (`ModuleNotFoundError: No module named 'mood_detector'`) fixed using proper `sys.path` and module structure.
+* Model loading path needed to match local structure (`model/binary_model`).
+
+**Status:**
+Streamlit version now runs **perfectly** on local machine with a modular journal and live mood prediction support.
+
 
