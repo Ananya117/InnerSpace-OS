@@ -272,7 +272,7 @@ Streamlit version now runs **perfectly** on local machine with a modular journal
 
 ---
 
-### **10. Mood Analytics Visualization Panel (Day 3)**
+### **10. Mood Analytics Visualization Panel **
 
 **→ Emotion Trend Insights Based on Journals**
 
