@@ -270,4 +270,40 @@ Innerspace/
 **Status:**
 Streamlit version now runs **perfectly** on local machine with a modular journal and live mood prediction support.
 
+---
 
+### **10. Mood Analytics Visualization Panel (Day 3)**
+
+**→ Emotion Trend Insights Based on Journals**
+
+**What Was Done:**
+
+* Created a new module `mood_analytics/mood_analytics.py` for visualizing mood trends.
+* Loaded `journal_entries.csv` containing user journal entries and predicted mood.
+* Parsed timestamps to extract dates.
+* Computed mood distribution and daily trends over time.
+* Used **Altair** to display:
+
+  * 📊 **Mood Distribution Pie Chart**
+  * 📈 **Daily Mood Trend Line Chart** for temporal analysis
+* Integrated with `app.py` to display this panel below journal entries.
+
+**Dataset Used:**
+
+* `journal_entries.csv`
+
+  * Columns: `timestamp`, `entry`, `predicted_mood`
+  * Labels are binary: `Good 😊` and `Not-Good 😞`
+
+**Accuracy Insight:**
+
+* Uses previously predicted mood labels from the DistilBERT model.
+* Not recalculated here, just visualized.
+
+**Problems Faced:**
+
+* Missing or incorrectly formatted timestamps caused parsing issues.
+* Needed to handle cases where no journal entries were present (avoid graph crashes).
+* Ensured charts were responsive and fit within Streamlit's layout.
+
+---
