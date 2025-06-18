@@ -272,7 +272,7 @@ Streamlit version now runs **perfectly** on local machine with a modular journal
 
 ---
 
-### **10. Mood Analytics Visualization Panel **
+### **10. Mood Analytics Visualization Panel**
 
 **→ Emotion Trend Insights Based on Journals**
 
@@ -307,3 +307,44 @@ Streamlit version now runs **perfectly** on local machine with a modular journal
 * Ensured charts were responsive and fit within Streamlit's layout.
 
 ---
+
+**11. Pomodoro Timer Integration + UI Realignment**
+→ Productivity Meets Mood Logging
+
+**What Was Done:**
+
+* Added a new `pomodoro/` module with `pomodoro.py`, implementing a basic Pomodoro timer with start and stop functionality using Streamlit’s session state.
+* Integrated the Pomodoro panel into the main layout (`app.py`) using columns to separate content areas.
+* Updated the app's layout with:
+
+  * Top-centered "Innerspace OS" title and cozy tagline.
+  * Pomodoro panel positioned in the left column.
+  * Journal and Mood Analytics buttons retained as simple Streamlit buttons (removed broken floating circular HTML versions for now).
+* Simplified navigation by placing action buttons at the bottom of the page with conditional routing via `st.query_params`.
+
+**Folder Structure:**
+
+```
+Innerspace/
+├── app.py
+├── model/
+│   └── binary_model/
+├── mood_detector/
+│   └── mood.py
+├── journal/
+│   └── journal.py
+├── mood_analytics/
+│   └── analytics.py
+├── pomodoro/
+│   └── pomodoro.py
+```
+
+**Problems Faced:**
+
+* `set_page_config()` error due to late placement — resolved by ensuring it's the **first** Streamlit call.
+* `st.experimental_get_query_params()` deprecated — replaced with `st.query_params`.
+* Floating HTML buttons caused layout issues and broke routing — reverted to standard buttons for now.
+* Button alignment inside Pomodoro panel needed manual column handling to place Start and Stop side-by-side.
+
+**Status:**
+Pomodoro module works smoothly with functional timer buttons. UI remains basic but structured — ready for further aesthetic improvements after core widget additions.
